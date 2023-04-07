@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { ContextGlobal } from "./utils/global.context";
 import estadoInicial from './utils/global.context';
@@ -8,7 +8,10 @@ import estadoInicial from './utils/global.context';
 
 
 const Navbar = () => {
-
+const {state,dispatch}=useContext(ContextGlobal)
+const cambiarTema = (theme) => {
+  dispatch({ type: 'cambiar_tema', theme });
+};
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -23,7 +26,7 @@ const Navbar = () => {
         <Link className="nav-link active" aria-current="page" to="/contact">Contacto</Link> 
         </li>
         <li className="nav-item">
-        <button type="button" class="btn btn-dark">Dark</button>
+        <button onClick={() => cambiarTema(!state.theme)}type="button" class="btn btn-dark">Change Theme</button>
         </li>
       </ul>
     </div>
